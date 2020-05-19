@@ -9,8 +9,8 @@ public class Creature {
 	private String IMG;
 	private String C_PLACE;
 	private String F_SH;
-	private int N_TIME;
-	private int S_TIME;
+	private String N_TIME;
+	private String S_TIME;
 	private int D_FLG;
 	/*
 	VER
@@ -62,16 +62,16 @@ public class Creature {
 	public void setF_SH(String f_SH) {
 		F_SH = f_SH;
 	}
-	public int getN_TIME() {
+	public String getN_TIME() {
 		return N_TIME;
 	}
-	public void setN_TIME(int n_TIME) {
+	public void setN_TIME(String n_TIME) {
 		N_TIME = n_TIME;
 	}
-	public int getS_TIME() {
+	public String getS_TIME() {
 		return S_TIME;
 	}
-	public void setS_TIME(int s_TIME) {
+	public void setS_TIME(String s_TIME) {
 		S_TIME = s_TIME;
 	}
 	public int getD_FLG() {
