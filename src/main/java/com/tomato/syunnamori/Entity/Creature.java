@@ -1,5 +1,6 @@
 package com.tomato.syunnamori.Entity;
 
+
 public class Creature {
 
 	private String C_CODE;
