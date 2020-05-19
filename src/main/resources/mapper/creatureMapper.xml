@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC"-//mybaits.org//DTD Mapper 3.0.//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tomato.spring.boot.mapper.Mapper">		
+	<select id ="selcetAll"
+		resuitType="com.tomato.syunnamori.Entity.Creature">
+		select C_CODE C_CODE,C_NAME C_NAME,C_PRICE C_PRICE,S_NAME S_NAME,IMG　IMG,
+		C_PLACE　C_PLACE,F_SH　F_SH,N_TIME　N_TIME,S_TIME　S_TIME,D_FLG D_FLG
+		from 
+		creature
+		</select>
+</mapper>
