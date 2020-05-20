@@ -1,8 +1,5 @@
 package com.tomato.syunnamori.Entity;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class Creature {
 	private String c_code;
 	private String c_name;

@@ -132,8 +132,6 @@ public class CreatureImpl implements CreatureService {
 	public AjaxResult queryByThisMonth() {
 		Calendar nowCalendar = Calendar.getInstance();
 		int thisMonth = nowCalendar.get(Calendar.MONTH) + 1;
-		int thisHour = nowCalendar.get(Calendar.HOUR_OF_DAY);
-
 		List<Creature> sList = dao.queryAll();
 		List<Creature> nList = sList;
 		ArrayList<Creature> msgSList = new ArrayList<Creature>();

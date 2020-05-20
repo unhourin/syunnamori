@@ -1,13 +1,11 @@
 package com.tomato.syunnamori.Controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tomato.syunnamori.Dto.AjaxResult;
-import com.tomato.syunnamori.Entity.Creature;
 import com.tomato.syunnamori.Service.CreatureService;
 
 @RestController
