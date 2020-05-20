@@ -21,11 +21,13 @@ public class CreatureController {
 		return service.queryByNowTime();
 	}
 
+	//今月画面のapi
 	@GetMapping("/kongetsu")
 	public AjaxResult Kongetsu() {
 		return service.queryByThisMonth();
 	}
 
+	//全表示画面のapi
 	@GetMapping("/zenhyouji")
 	public AjaxResult zenhyouji() {
 		return service.queryAll();

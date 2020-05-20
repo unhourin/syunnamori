@@ -21,8 +21,6 @@ public class Creature {
 	public Creature() {
 
 	}
-	
-	
 
 	@Override
 	public String toString() {
@@ -30,8 +28,6 @@ public class Creature {
 				+ ", img=" + img + ", c_place=" + c_place + ", f_sh=" + f_sh + ", sh_name=" + sh_name + ", n_time="
 				+ n_time + ", s_time=" + s_time + ", d_flg=" + d_flg + "]";
 	}
-
-
 
 	public String getC_code() {
 		return c_code;
@@ -121,5 +117,4 @@ public class Creature {
 		this.d_flg = d_flg;
 	}
 
-	
 }
