@@ -2,6 +2,8 @@ package com.tomato.syunnamori.Service.Impl;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +50,12 @@ public class CreatureImpl implements CreatureService {
 						if (thisMonth >= startMonth && thisMonth <= endMonth) {
 							if (startHour < endHour) {
 								if (thisHour >= startHour && thisHour <= endHour) {
+									sList.get(i).setTime_dif(endHour - thisHour);
 									sAddFlg = true;
 								}
 							} else {
 								if (thisHour >= startHour || thisHour <= endHour) {
+									sList.get(i).setTime_dif(12 + endHour - thisHour);
 									sAddFlg = true;
 								}
 							}
@@ -60,10 +64,12 @@ public class CreatureImpl implements CreatureService {
 						if (thisMonth >= startMonth || thisMonth <= endMonth) {
 							if (startHour < endHour) {
 								if (thisHour >= startHour && thisHour <= endHour) {
+									sList.get(i).setTime_dif(endHour - thisHour);
 									sAddFlg = true;
 								}
 							} else {
 								if (thisHour >= startHour || thisHour <= endHour) {
+									sList.get(i).setTime_dif(12 + endHour - thisHour);
 									sAddFlg = true;
 								}
 							}
@@ -92,10 +98,12 @@ public class CreatureImpl implements CreatureService {
 						if (thisMonth >= startMonth && thisMonth <= endMonth) {
 							if (startHour < endHour) {
 								if (thisHour >= startHour && thisHour <= endHour) {
+									nList.get(i).setTime_dif(endHour - thisHour);
 									nAddFlg = true;
 								}
 							} else {
 								if (thisHour >= startHour || thisHour <= endHour) {
+									nList.get(i).setTime_dif(12 + endHour - thisHour);
 									nAddFlg = true;
 								}
 							}
@@ -104,10 +112,12 @@ public class CreatureImpl implements CreatureService {
 						if (thisMonth >= startMonth || thisMonth <= endMonth) {
 							if (startHour < endHour) {
 								if (thisHour >= startHour && thisHour <= endHour) {
+									nList.get(i).setTime_dif(endHour - thisHour);
 									nAddFlg = true;
 								}
 							} else {
 								if (thisHour >= startHour || thisHour <= endHour) {
+									nList.get(i).setTime_dif(12 + endHour - thisHour);
 									nAddFlg = true;
 								}
 							}
@@ -119,9 +129,9 @@ public class CreatureImpl implements CreatureService {
 					msgNList.add(nList.get(i));
 				}
 			}
-
-			sList.removeAll(msgSList);
-			nList.removeAll(msgNList);
+			sList.sort(Comparator.comparing(Creature::getTime_dif));
+			nList.sort(Comparator.comparing(Creature::getTime_dif));
+		
 			return new AjaxResult(1, "SUCCESS", msgNList, msgSList);
 		} else {
 			return new AjaxResult(0, "NULL");
@@ -193,10 +203,10 @@ public class CreatureImpl implements CreatureService {
 				if (nAddFlg == true) {
 					msgNList.add(nList.get(i));
 				}
-			}
 
-			sList.removeAll(msgSList);
-			nList.removeAll(msgNList);
+			}
+			msgNList.sort(Comparator.comparing(Creature::getC_price));
+			msgSList.sort(Comparator.comparing(Creature::getC_price));
 			return new AjaxResult(1, "SUCCESS", msgNList, msgSList);
 		} else {
 			return new AjaxResult(0, "NULL");

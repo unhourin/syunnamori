@@ -12,6 +12,7 @@ public class Creature {
 	private String n_time;
 	private String s_time;
 	private int d_flg;
+	private int time_dif;
 //	private String ver;
 //	private Date lud_date;
 //	private String lud_person;
@@ -116,5 +117,14 @@ public class Creature {
 	public void setD_flg(int d_flg) {
 		this.d_flg = d_flg;
 	}
+
+	public int getTime_dif() {
+		return time_dif;
+	}
+
+	public void setTime_dif(int time_dif) {
+		this.time_dif = time_dif;
+	}
+	
 
 }
