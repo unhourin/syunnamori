@@ -47,29 +47,32 @@ public class CreatureImpl implements CreatureService {
 					int endHour = Integer.valueOf(tmpSTime[3]);
 					strSSet += startMonth + "月~" + endMonth + "月（" + startHour + "時~" + endHour + "時）";
 					if (startMonth <= endMonth) {
+						sList.get(i).setMonth_dif(thisMonth - endMonth);
 						if (thisMonth >= startMonth && thisMonth <= endMonth) {
 							if (startHour < endHour) {
-								if (thisHour >= startHour && thisHour <= endHour) {
-									sList.get(i).setTime_dif(endHour - thisHour);
+								if (thisHour >= startHour && thisHour < endHour) {
+									sList.get(i).setHour_dif(endHour - thisHour);
 									sAddFlg = true;
 								}
 							} else {
-								if (thisHour >= startHour || thisHour <= endHour) {
-									sList.get(i).setTime_dif(12 + endHour - thisHour);
+								if (thisHour >= startHour || thisHour < endHour) {
+									sList.get(i).setHour_dif(24 + endHour - thisHour);
 									sAddFlg = true;
 								}
 							}
 						}
 					} else {
+						sList.get(i).setMonth_dif(12 + endMonth - thisMonth);
 						if (thisMonth >= startMonth || thisMonth <= endMonth) {
+							sList.get(i).setMonth_dif(thisMonth - endMonth);
 							if (startHour < endHour) {
-								if (thisHour >= startHour && thisHour <= endHour) {
-									sList.get(i).setTime_dif(endHour - thisHour);
+								if (thisHour >= startHour && thisHour < endHour) {
+									sList.get(i).setHour_dif(endHour - thisHour);
 									sAddFlg = true;
 								}
 							} else {
-								if (thisHour >= startHour || thisHour <= endHour) {
-									sList.get(i).setTime_dif(12 + endHour - thisHour);
+								if (thisHour >= startHour || thisHour < endHour) {
+									sList.get(i).setHour_dif(24 + endHour - thisHour);
 									sAddFlg = true;
 								}
 							}
@@ -95,29 +98,31 @@ public class CreatureImpl implements CreatureService {
 					int endHour = Integer.valueOf(tmpNTime[3]);
 					strNSet += startMonth + "月~" + endMonth + "月（" + startHour + "時~" + endHour + "時）";
 					if (startMonth <= endMonth) {
+						nList.get(i).setMonth_dif(thisMonth - endMonth);
 						if (thisMonth >= startMonth && thisMonth <= endMonth) {
 							if (startHour < endHour) {
-								if (thisHour >= startHour && thisHour <= endHour) {
-									nList.get(i).setTime_dif(endHour - thisHour);
+								if (thisHour >= startHour && thisHour < endHour) {
+									nList.get(i).setHour_dif(endHour - thisHour);
 									nAddFlg = true;
 								}
 							} else {
-								if (thisHour >= startHour || thisHour <= endHour) {
-									nList.get(i).setTime_dif(12 + endHour - thisHour);
+								if (thisHour >= startHour || thisHour < endHour) {
+									nList.get(i).setHour_dif(24 + endHour - thisHour);
 									nAddFlg = true;
 								}
 							}
 						}
 					} else {
+						nList.get(i).setMonth_dif(12 + endMonth - thisMonth);
 						if (thisMonth >= startMonth || thisMonth <= endMonth) {
 							if (startHour < endHour) {
-								if (thisHour >= startHour && thisHour <= endHour) {
-									nList.get(i).setTime_dif(endHour - thisHour);
+								if (thisHour >= startHour && thisHour < endHour) {
+									nList.get(i).setHour_dif(endHour - thisHour);
 									nAddFlg = true;
 								}
 							} else {
-								if (thisHour >= startHour || thisHour <= endHour) {
-									nList.get(i).setTime_dif(12 + endHour - thisHour);
+								if (thisHour >= startHour || thisHour < endHour) {
+									nList.get(i).setHour_dif(24 + endHour - thisHour);
 									nAddFlg = true;
 								}
 							}
@@ -129,9 +134,9 @@ public class CreatureImpl implements CreatureService {
 					msgNList.add(nList.get(i));
 				}
 			}
-			sList.sort(Comparator.comparing(Creature::getTime_dif));
-			nList.sort(Comparator.comparing(Creature::getTime_dif));
-		
+			sList.sort(Comparator.comparing(Creature::getMonth_dif).thenComparing(Creature::getHour_dif));
+			nList.sort(Comparator.comparing(Creature::getMonth_dif).thenComparing(Creature::getHour_dif));
+
 			return new AjaxResult(1, "SUCCESS", msgNList, msgSList);
 		} else {
 			return new AjaxResult(0, "NULL");
@@ -205,8 +210,8 @@ public class CreatureImpl implements CreatureService {
 				}
 
 			}
-			msgNList.sort(Comparator.comparing(Creature::getC_price));
-			msgSList.sort(Comparator.comparing(Creature::getC_price));
+			msgNList.sort(Comparator.comparing(Creature::getC_price).reversed());
+			msgSList.sort(Comparator.comparing(Creature::getC_price).reversed());
 			return new AjaxResult(1, "SUCCESS", msgNList, msgSList);
 		} else {
 			return new AjaxResult(0, "NULL");

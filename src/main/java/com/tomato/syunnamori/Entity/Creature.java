@@ -12,7 +12,8 @@ public class Creature {
 	private String n_time;
 	private String s_time;
 	private int d_flg;
-	private int time_dif;
+	private int hour_dif;
+	private int month_dif;
 //	private String ver;
 //	private Date lud_date;
 //	private String lud_person;
@@ -118,13 +119,23 @@ public class Creature {
 		this.d_flg = d_flg;
 	}
 
-	public int getTime_dif() {
-		return time_dif;
+	public int getHour_dif() {
+		return hour_dif;
 	}
 
-	public void setTime_dif(int time_dif) {
-		this.time_dif = time_dif;
+	public void setHour_dif(int hour_dif) {
+		this.hour_dif = hour_dif;
 	}
+
+	public int getMonth_dif() {
+		return month_dif;
+	}
+
+	public void setMonth_dif(int month_dif) {
+		this.month_dif = month_dif;
+	}
+
+	
 	
 
 }
