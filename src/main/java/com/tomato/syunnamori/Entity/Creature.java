@@ -1,84 +1,128 @@
 package com.tomato.syunnamori.Entity;
 
+import java.sql.Date;
+import java.sql.Time;
 
 public class Creature {
+	private String c_code;
+	private String c_name;
+	private int c_price;
+	private String s_name;
+	private String img;
+	private String c_place;
+	private String f_sh;
+	private String sh_name;
+	private String n_time;
+	private String s_time;
+	private int d_flg;
+//	private String ver;
+//	private Date lud_date;
+//	private String lud_person;
+//	private Date fud_date;
+//	private String fud_person;
 
-	private String C_CODE;
-	private String C_NAME;
-	private int C_PRICE;
-	private String S_NAME;
-	private String IMG;
-	private String C_PLACE;
-	private String F_SH;
-	private String N_TIME;
-	private String S_TIME;
-	private int D_FLG;
-	/*
-	VER
-	LUD_DATE
-	LUD_PERSON
-	FUD_DATE
-	FUD_PERSON
-	 */
+	public Creature() {
 
-	public String getC_CODE() {
-		return C_CODE;
 	}
-	public void setC_CODE(String c_CODE) {
-		C_CODE = c_CODE;
+	
+	
+
+	@Override
+	public String toString() {
+		return "Creature [c_code=" + c_code + ", c_name=" + c_name + ", c_price=" + c_price + ", s_name=" + s_name
+				+ ", img=" + img + ", c_place=" + c_place + ", f_sh=" + f_sh + ", sh_name=" + sh_name + ", n_time="
+				+ n_time + ", s_time=" + s_time + ", d_flg=" + d_flg + "]";
 	}
-	public String getC_NAME() {
-		return C_NAME;
+
+
+
+	public String getC_code() {
+		return c_code;
 	}
-	public void setC_NAME(String c_NAME) {
-		C_NAME = c_NAME;
+
+	public void setC_code(String c_code) {
+		this.c_code = c_code;
 	}
-	public int getC_PRICE() {
-		return C_PRICE;
+
+	public String getC_name() {
+		return c_name;
 	}
-	public void setC_PRICE(int c_PRICE) {
-		C_PRICE = c_PRICE;
+
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
 	}
-	public String getS_NAME() {
-		return S_NAME;
+
+	public int getC_price() {
+		return c_price;
 	}
-	public void setS_NAME(String s_NAME) {
-		S_NAME = s_NAME;
+
+	public void setC_price(int c_price) {
+		this.c_price = c_price;
 	}
-	public String getIMG() {
-		return IMG;
+
+	public String getS_name() {
+		return s_name;
 	}
-	public void setIMG(String iMG) {
-		IMG = iMG;
+
+	public void setS_name(String s_name) {
+		this.s_name = s_name;
 	}
-	public String getC_PLACE() {
-		return C_PLACE;
+
+	public String getImg() {
+		return img;
 	}
-	public void setC_PLACE(String c_PLACE) {
-		C_PLACE = c_PLACE;
+
+	public void setImg(String img) {
+		this.img = img;
 	}
-	public String getF_SH() {
-		return F_SH;
+
+	public String getC_place() {
+		return c_place;
 	}
-	public void setF_SH(String f_SH) {
-		F_SH = f_SH;
+
+	public void setC_place(String c_place) {
+		this.c_place = c_place;
 	}
-	public String getN_TIME() {
-		return N_TIME;
+
+	public String getF_sh() {
+		return f_sh;
 	}
-	public void setN_TIME(String n_TIME) {
-		N_TIME = n_TIME;
+
+	public void setF_sh(String f_sh) {
+		this.f_sh = f_sh;
 	}
-	public String getS_TIME() {
-		return S_TIME;
+
+	public String getSh_name() {
+		return sh_name;
 	}
-	public void setS_TIME(String s_TIME) {
-		S_TIME = s_TIME;
+
+	public void setSh_name(String sh_name) {
+		this.sh_name = sh_name;
 	}
-	public int getD_FLG() {
-		return D_FLG;
+
+	public String getN_time() {
+		return n_time;
 	}
-	public void setD_FLG(int d_FLG) {
-		D_FLG = d_FLG;
+
+	public void setN_time(String n_time) {
+		this.n_time = n_time;
 	}
+
+	public String getS_time() {
+		return s_time;
+	}
+
+	public void setS_time(String s_time) {
+		this.s_time = s_time;
+	}
+
+	public int getD_flg() {
+		return d_flg;
+	}
+
+	public void setD_flg(int d_flg) {
+		this.d_flg = d_flg;
+	}
+
+	
 }
