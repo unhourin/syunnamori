@@ -3,10 +3,5 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
-	<select id="queryAll" resultType="Creature">
-		select
-		c_code,c_name,c_price,s_name,img,c_place,f_sh,sh_name,n_time,s_time,d_flg
-		from
-		creature
-	</select>
+	
 </mapper>
