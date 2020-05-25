@@ -3,5 +3,27 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
+	<select id="queryAll" resultType="Creature">
+		select
+			c.c_code,c.t_code,c.c_name,c.c_price,c.c_conditions,c.img,c.c_place,c.f_sh,c.sh_name,m.month,m.c_code,m.earth,t.start_time,t.end_time
+		from
+			(creature c inner join month m on c.c_code = m.c_code)
+		inner join
+			time_zone on m.t_zone_a = t.t_code and m.t_zone_b = t.code
+	</select>
+
+	<select id="queryThisMonth" resultType="Month">
+		select
+			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,c.dle_flg,m.c_month,m.earth,m.t_zone_a,m.t_zone_b
+		from
+			creature as c
+		inner join
+			month as m
+		on
+			c.c_code = m.c_code
+		where
+			m.c_month = month(now())
+	</select>
 	
+
 </mapper>
