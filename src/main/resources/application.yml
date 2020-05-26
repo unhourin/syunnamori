@@ -5,4 +5,4 @@ spring:
     url: jdbc:mysql://localhost:3306/syunnamori?characterEncoding=utf-8
     username: root
     password: root
-mybatis:  mapper-locations: classpath:mapper/*.xml  config-location: classpath:mybatis-config.xml  type-aliases-package: com.tomato.syunnamori.Entity  configuration:    map-underscore-to-camel-case: true
+mybatis:  mapper-locations: classpath:mapper/*.xml  config-location: classpath:mybatis-config.xml  type-aliases-package: com.tomato.syunnamori.Entity

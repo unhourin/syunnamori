@@ -10,6 +10,4 @@ import com.tomato.syunnamori.Entity.Creature;
 public interface CreatureDao {
 	
 	List<Creature> queryAll();
-		
-	List<Creature> queryThisMonth();
 }

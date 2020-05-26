@@ -14,11 +14,15 @@ import com.tomato.syunnamori.Entity.Creature;
 @RestController
 public class CreatureController {
 	
+	@Autowired
 	private CreatureDao creatureDao;
 	
-	public List<Creature> kongetsu() {
-		
-		return creatureDao.queryThisMonth();
+	@GetMapping("/zenhyouji")
+	public AjaxResult kongetsu() {
+		List<Creature> list =creatureDao.queryAll();
+		if(list.isEmpty()||list==null)
+			return new AjaxResult(0,"NULL");
+		return new AjaxResult(1,"SUCCESS",list);
 		
 	}
 
