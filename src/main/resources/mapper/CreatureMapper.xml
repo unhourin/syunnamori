@@ -31,9 +31,7 @@
 		on
 			c.c_code = m.c_code
 		where
-			m.start_month <![CDATA[ <= ]]> m.end_month AND(m.start_month <![CDATA[ <= ]]> MONTH(NOW()) AND MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
-		or
-			m.end_month <![CDATA[ <= ]]> m.start_month AND(start_month <![CDATA[ <= ]]> MONTH(NOW()) OR m.end_month <![CDATA[ <= ]]> MONTH(NOW()));
+			month(now())  between m.start_month and m.end_month;
 	</select>
 
 </mapper>
