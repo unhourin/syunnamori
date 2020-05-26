@@ -8,6 +8,8 @@ import com.tomato.syunnamori.Entity.Creature;
 
 @Mapper
 public interface CreatureDao {
-	
+
 	List<Creature> queryAll();
+
+	List<Creature> queryThisMonth();
 }
