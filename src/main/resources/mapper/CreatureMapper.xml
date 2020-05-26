@@ -17,7 +17,13 @@
 	</select>
 	<select id="queryThisMonth" resultType="Creature">
 		select
-			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,c.dle_flg,m.start_month,m.end_month,m.c_code,m.earth,m.start_time,m.end_time,m.dle_flg
+			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
+			m.c_code "month.c_code",
+			m.earth "month.earth",
+			m.start_month "month.start_month",
+			m.end_month "month.end_month",
+			m.start_time "month.start_time",
+			m.end_time "month.end_time"
 		from
 			creature as c
 		inner join
