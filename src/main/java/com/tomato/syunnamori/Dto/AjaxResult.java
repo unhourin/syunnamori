@@ -69,4 +69,12 @@ public class AjaxResult {
 		this.sData = sData;
 	}
 
+	@Override
+	public String toString() {
+		return "AjaxResult [code=" + code + ", msg=" + msg + ", data=" + data + ", nData=" + nData + ", sData=" + sData
+				+ "]";
+	}
+	
+	
+
 }

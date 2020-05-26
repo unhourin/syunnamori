@@ -16,7 +16,7 @@ public class Creature implements Serializable {
 	private String img;
 	private String c_place;
 	private String f_sh;
-	private String sh_nmae;
+	private String sh_name;
 	private int del_flg;
 	
 	private Month month;
@@ -93,12 +93,14 @@ public class Creature implements Serializable {
 		this.f_sh = f_sh;
 	}
 
-	public String getSh_nmae() {
-		return sh_nmae;
+	
+
+	public String getSh_name() {
+		return sh_name;
 	}
 
-	public void setSh_nmae(String sh_nmae) {
-		this.sh_nmae = sh_nmae;
+	public void setSh_name(String sh_name) {
+		this.sh_name = sh_name;
 	}
 
 	public int getDel_flg() {
