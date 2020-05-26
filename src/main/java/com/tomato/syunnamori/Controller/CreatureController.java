@@ -18,7 +18,7 @@ public class CreatureController {
 	private CreatureDao creatureDao;
 	
 	@GetMapping("/zenhyouji")
-	public AjaxResult kongetsu() {
+	public AjaxResult zenhyouji() {
 		List<Creature> list =creatureDao.queryAll();
 		if(list.isEmpty()||list==null)
 			return new AjaxResult(0,"NULL");
