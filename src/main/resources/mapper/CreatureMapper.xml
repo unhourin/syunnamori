@@ -58,8 +58,8 @@
 				)
 			);
 	</select>
-
 	<select id="queryRealTime" resultType="Creature">
+	<!-- これはデータベースから現在時間で存在する魚と虫の情報を取り出すSQL文です -->
 		select
 			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
 			m.c_code "month.c_code",
@@ -75,7 +75,7 @@
 		on
 			c.c_code = m.c_code
 		where
-			(
+			(	<!--これは全ての開始時間は終了時間より小さいケースです、その時、開始時間＜現在時間＜終了時間、の判断をとります-->
 				(m.start_month <![CDATA[ <= ]]> m.end_month )
 				AND
 				(m.START_TIME <![CDATA[ <= ]]> m.END_TIME)
@@ -89,7 +89,7 @@
 				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
 			)
 			OR
-			(
+			(	<!--これは開始時間は終了時間より小さいそして開始月は終了月より大きケースです、その時、開始時間＜現在時間＜終了時間、開始月＜現在時間、終了月＞現在時間の判断をとります-->
 				(m.start_month > m.end_month)
 				AND
 				(m.START_TIME <![CDATA[ <= ]]> m.END_TIME)
@@ -105,7 +105,7 @@
 				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
 			)
 			OR
-			(
+			(<!--これは開始時間は終了時間より大きいそして開始月は終了月より小さいケースです、その時、開始月＜現在時間＜終了月、開始時間＜現在時間、終了時間＞現在時間の判断をとります-->
 				(m.start_month <![CDATA[ <= ]]>  m.end_month)
 				AND
 				(m.START_TIME > m.END_TIME)
@@ -122,6 +122,7 @@
 			)
 			OR
 			(
+			<!--これは開始時間は終了時間より大きいそして開始月は終了月より大きいケースです、その時、開始月＜現在時間、終了月＞現在時間、開始時間＜現在時間、終了時間＞現在時間の判断をとります-->
 				(m.start_month >  m.end_month)
 				AND
 				(m.START_TIME > m.END_TIME)
