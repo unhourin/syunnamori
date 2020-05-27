@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tomato.syunnamori.Dao.CreatureDao;
-import com.tomato.syunnamori.Dao.CreatureRealTimeDao;
 import com.tomato.syunnamori.Dto.AjaxResult;
 import com.tomato.syunnamori.Entity.Creature;
 
@@ -17,7 +16,6 @@ public class CreatureController {
 
 	@Autowired
 	private CreatureDao creatureDao;
-	private CreatureRealTimeDao creatureRealTimeDao;
 
 	@GetMapping("/zenhyouji")
 	public AjaxResult zenhyouji() {
@@ -34,12 +32,11 @@ public class CreatureController {
 			return new AjaxResult(0,"NULL");
 		return new AjaxResult(1,"SUCCESS",list);
 	}
-	@GetMapping("/realTime")
+	@GetMapping("/realtime")
 	public AjaxResult realTime() {
-		List<Creature> list = creatureRealTimeDao.queryRealTime();
+		List<Creature> list = creatureDao.queryRealTime();
 		if(list.isEmpty() || list ==null)
 			return new AjaxResult(0,"NULL");
 		return new AjaxResult(1,"SUCCESS",list);
 	}
-
 }
