@@ -34,12 +34,13 @@ public class CreatureController {
 			return new AjaxResult(0,"NULL");
 		return new AjaxResult(1,"SUCCESS",list);
 	}
-	@GetMapping("/realTime")
-	public AjaxResult realTime() {
-		List<Creature> list = creatureRealTimeDao.queryRealTime();
-		if(list.isEmpty() || list ==null)
-			return new AjaxResult(0,"NULL");
-		return new AjaxResult(1,"SUCCESS",list);
-	}
+	
+//	@GetMapping("/realTime")
+//	public AjaxResult realTime() {
+//		List<Creature> list = creatureRealTimeDao.queryRealTime();
+//		if(list.isEmpty() || list ==null)
+//			return new AjaxResult(0,"NULL");
+//		return new AjaxResult(1,"SUCCESS",list);
+//	}
 
 }

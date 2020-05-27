@@ -31,8 +31,9 @@
 			month as m
 		on
 			c.c_code = m.c_code
-		where
-			month(now())  between m.start_month and m.end_month;
+		where month(now()) between m.start_month and m.end_month
+    or case when m.endmonth > 12 and month(now()) between 1 and m.end_month - 12
+
 	</select>
 
 </mapper>

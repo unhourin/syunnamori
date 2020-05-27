@@ -110,6 +110,14 @@ public class Creature implements Serializable {
 	public void setDel_flg(int del_flg) {
 		this.del_flg = del_flg;
 	}
+
+	@Override
+	public String toString() {
+		return "Creature [c_code=" + c_code + ", t_code=" + t_code + ", c_name=" + c_name + ", c_price=" + c_price
+				+ ", s_conditions=" + s_conditions + ", img=" + img + ", c_place=" + c_place + ", f_sh=" + f_sh
+				+ ", sh_name=" + sh_name + ", del_flg=" + del_flg + ", month=" + month + "]";
+	}
+	
 	
 	
 
