@@ -15,7 +15,7 @@
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
 	</select>
-
+	
 	<select id="queryThisMonth" resultType="Creature">
 		select
 			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
@@ -26,33 +26,17 @@
 			m.start_time "month.start_time",
 			m.end_time "month.end_time"
 		from
-			creature c
+			creature as c
 		inner join
-			month m
+			month as m
 		on
 			c.c_code = m.c_code
 		where
-			(
-				m.start_month <![CDATA[ <= ]]> m.end_month
-				AND
-				(
-					m.start_month <![CDATA[ <= ]]> month(now())
-				AND
-					month(now()) <![CDATA[ <= ]]> m.end_month
-				)
-			)
-			OR
-			(
-				m.start_month <![CDATA[ > ]]> m.end_month
-				AND
-				(
-					m.start_month <![CDATA[ <= ]]> month(now())
-				OR
-					month(now()) <![CDATA[ <= ]]> m.end_month
-				)
-			);
+			m.start_month <![CDATA[ <= ]]> m.end_month AND(m.start_month <![CDATA[ <= ]]> MONTH(NOW()) AND MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
+		or
+			m.end_month <![CDATA[ <= ]]> m.start_month AND(start_month <![CDATA[ <= ]]> MONTH(NOW()) OR m.end_month <![CDATA[ <= ]]> MONTH(NOW()));
 	</select>
-
+	
 	<select id="queryRealTime" resultType="Creature">
 		select
 			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,

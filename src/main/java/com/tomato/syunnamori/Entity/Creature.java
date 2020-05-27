@@ -1,13 +1,11 @@
 package com.tomato.syunnamori.Entity;
 
-import java.io.Serializable;
-
 /**
  * @author unhourin
  * @version 2020/05/2510:19:54 
  * テーブルCreatureの実体
  */
-public class Creature implements Serializable {
+public class Creature{
 	private String c_code;
 	private String t_code;
 	private String c_name;
@@ -18,6 +16,7 @@ public class Creature implements Serializable {
 	private String f_sh;
 	private String sh_name;
 	private int del_flg;
+	
 	
 	private Month month;
 
@@ -111,12 +110,6 @@ public class Creature implements Serializable {
 		this.del_flg = del_flg;
 	}
 
-	@Override
-	public String toString() {
-		return "Creature [c_code=" + c_code + ", t_code=" + t_code + ", c_name=" + c_name + ", c_price=" + c_price
-				+ ", s_conditions=" + s_conditions + ", img=" + img + ", c_place=" + c_place + ", f_sh=" + f_sh
-				+ ", sh_name=" + sh_name + ", del_flg=" + del_flg + ", month=" + month + "]";
-	}
 	
 	
 	

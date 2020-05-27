@@ -1,13 +1,12 @@
 package com.tomato.syunnamori.Entity;
 
-import java.io.Serializable;
 
 /**
 *@author unhourin
 *@version 2020/05/2510:42:32
 *テーブルMonthの実体
 */
-public class Month implements Serializable {
+public class Month {
 	private String c_code;
 	private int earth;
 	private int start_month;
