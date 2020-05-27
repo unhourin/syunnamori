@@ -15,6 +15,7 @@
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
 	</select>
+	
 	<select id="queryThisMonth" resultType="Creature">
 		select
 			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
