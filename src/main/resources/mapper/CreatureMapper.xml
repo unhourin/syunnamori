@@ -33,21 +33,27 @@
 			c.c_code = m.c_code
 		where
 			(
+				<!--開始月が終了月より小さいか同じ -->
 				m.start_month <![CDATA[ <= ]]> m.end_month
 				AND
 				(
+					<!--開始月が今月より小さいか同じ -->
 					m.start_month <![CDATA[ <= ]]> month(now())
 				AND
+					<!--かつ、終了月が今月より大きいか同じ -->
 					month(now()) <![CDATA[ <= ]]> m.end_month
 				)
 			)
 			OR
 			(
+				<!--開始月が終了月より大きい -->
 				m.start_month <![CDATA[ > ]]> m.end_month
 				AND
 				(
+					<!--開始月が今月より小さいか同じ -->
 					m.start_month <![CDATA[ <= ]]> month(now())
 				OR
+					<!--もしくは、終了月が今月より大きいか同じ -->
 					month(now()) <![CDATA[ <= ]]> m.end_month
 				)
 			);

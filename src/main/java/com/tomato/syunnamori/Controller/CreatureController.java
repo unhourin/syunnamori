@@ -1,10 +1,7 @@
 package com.tomato.syunnamori.Controller;
 
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +17,14 @@ public class CreatureController {
 	@Autowired
 	private CreatureDao creatureDao;
 
-	
+
 	//作成者：雲鳳麟
 	//全表示画面のAPI
 	@GetMapping("/zenhyouji")
 	public AjaxResult zenhyouji() {
 		// すべとのデータをCreatureDaoから取得
 		List<Creature> list =creatureDao.queryAll();
-		
+
 		//ヌロかどうかの確認
 		if(list.isEmpty()||list==null)
 			//であったら　messageを戻す
@@ -35,18 +32,24 @@ public class CreatureController {
 		return new AjaxResult(1,"SUCCESS",list);
 
 	}
-	
-	
+
+	//作成者：黄益柱
+	//今月表示画面のAPI
 	@GetMapping("/kongetsu")
 	public AjaxResult kongetsu() {
+		//今月にとれるデータをCreatureDaoから取得
 		List<Creature> list = creatureDao.queryThisMonth();
+
+		//listが空っぽかNULLかの判断
 		if(list.isEmpty()||list==null)
+			//NULLのmessageを戻す
 			return new AjaxResult(0,"NULL");
+		//成功の場合はlistを戻す
 		return new AjaxResult(1,"SUCCESS",list);
 	}
-	
-	
-	
+
+
+
 	@GetMapping("/riarutaimu")
 	public AjaxResult riarutaimu() {
 		List<Creature> list = creatureDao.queryRealTime();
@@ -54,7 +57,7 @@ public class CreatureController {
 			return new AjaxResult(0,"NULL");
 		return new AjaxResult(1,"SUCCESS",list);
 	}
-	
+
 //	@GetMapping("/kongetsu")
 //	public AjaxResult zenhyouji() {
 //
