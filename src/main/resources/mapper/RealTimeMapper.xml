@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
+<mapper namespace="com.tomato.syunnamori.Dao.CreatureRealTimeDao">
 	<select id="queryRealTime" resultType="Creature">
-		select
+select
 			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
 			m.c_code "month.c_code",
 			m.earth "month.earth",
@@ -28,9 +28,9 @@
 				AND
 				(MONTH(NOW()) <![CDATA[ <= ]]>  m.end_month)
 				AND
-				(m.START_TIME <![CDATA[ <= ]]> DATEPART(hh, NOW()))
+				(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
 				AND
-				(DATEPART(hh, NOW()) <![CDATA[ <= ]]> m.END_TIME)
+				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
 			)
 			OR
 			(
@@ -44,9 +44,9 @@
 						(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
 					)
 				AND
-				(m.START_TIME <![CDATA[ <= ]]> DATEPART(hh, NOW()))
+				(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
 				AND
-				(DATEPART(hh, NOW()) <![CDATA[ <= ]]> m.END_TIME)
+				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
 			)
 			OR
 			(
@@ -59,9 +59,9 @@
 				(MONTH(NOW()) <![CDATA[ <= ]]>  m.end_month)
 				AND
 				(
-					(m.START_TIME <![CDATA[ <= ]]> DATEPART(hh, NOW()))
+					(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
 				OR
-					(DATEPART(hh, NOW()) <![CDATA[ <= ]]> m.END_TIME)
+					(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
 				)
 			)
 			OR
@@ -71,15 +71,15 @@
 				(m.START_TIME <![CDATA[ => ]]> m.END_TIME)
 				AND
 				(
-					(m.start_month <![CDATA[ <= ]]> MONTH(NOW()))
+					(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
 				OR
-					(MONTH(NOW()) <![CDATA[ <= ]]>  m.end_month)
+					(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
 				)
 				AND
 				(
-					(m.START_TIME <![CDATA[ => ]]> DATEPART(hh, NOW()))
+					(start_month  <![CDATA[ <= ]]>  MONTH(NOW()))
 				OR
-					(DATEPART(hh, NOW()) <![CDATA[ => ]]> m.END_TIME)
+					(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
 				)
 			);
 	</select>
