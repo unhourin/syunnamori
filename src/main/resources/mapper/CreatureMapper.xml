@@ -22,9 +22,9 @@
 			m.c_code "month.c_code",
 			m.earth "month.earth",
 			m.start_month "month.start_month",
-			m.end_month "month.end_month",
+			if(m.end_month > 12,m.end_month - 12,m.end_month) "month.end_month",
 			m.start_time "month.start_time",
-			m.end_time "month.end_time"
+			if(m.end_time > 24,m.end_time - 24,m.end_time) "month.end_time"
 		from
 			creature as c
 		inner join
