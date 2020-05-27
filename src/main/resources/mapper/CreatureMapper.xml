@@ -9,22 +9,21 @@
 			m.c_code "month.c_code",
 			m.earth "month.earth",
 			m.start_month "month.start_month",
-			if(m.end_month > 12,m.end_month - 12,m.end_month) "month.end_month",
+			m.end_month "month.end_month",
 			m.start_time "month.start_time",
-			if(m.end_time > 24,m.end_time - 24,m.end_time) "month.end_time"
+			m.end_time "month.end_time"
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
 	</select>
-	
 	<select id="queryThisMonth" resultType="Creature">
 		select
 			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
 			m.c_code "month.c_code",
 			m.earth "month.earth",
 			m.start_month "month.start_month",
-			if(m.end_month > 12,m.end_month - 12,m.end_month) "month.end_month",
+			m.end_month "month.end_month",
 			m.start_time "month.start_time",
-			if(m.end_time > 24,m.end_time - 24,m.end_time) "month.end_time"
+			m.end_time "month.end_time"
 		from
 			creature as c
 		inner join
@@ -32,7 +31,88 @@
 		on
 			c.c_code = m.c_code
 		where
-			month(now())  between m.start_month and m.end_month;
+			m.start_month <![CDATA[ <= ]]> m.end_month AND(m.start_month <![CDATA[ <= ]]> MONTH(NOW()) AND MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
+		or
+			m.end_month <![CDATA[ <= ]]> m.start_month AND(start_month <![CDATA[ <= ]]> MONTH(NOW()) OR m.end_month <![CDATA[ <= ]]> MONTH(NOW()));
 	</select>
-
+	<select id="queryRealTime" resultType="Creature">
+		select
+			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
+			m.c_code "month.c_code",
+			m.earth "month.earth",
+			m.start_month "month.start_month",
+			m.end_month "month.end_month",
+			m.start_time "month.start_time",
+			m.end_time "month.end_time"
+		from
+			creature as c
+		inner join
+			month as m
+		on
+			c.c_code = m.c_code
+		where
+			(
+				(m.start_month <![CDATA[ <= ]]> m.end_month )
+				AND
+				(m.START_TIME <![CDATA[ <= ]]> m.END_TIME)
+				AND
+				(m.start_month <![CDATA[ <= ]]> MONTH(NOW()))
+				AND
+				(MONTH(NOW()) <![CDATA[ <= ]]>  m.end_month)
+				AND
+				(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
+				AND
+				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
+			)
+			OR
+			(
+				(m.start_month > m.end_month)
+				AND
+				(m.START_TIME <![CDATA[ <= ]]> m.END_TIME)
+				AND
+					(
+						(start_month  <![CDATA[ <= ]]>  MONTH(NOW()))
+					OR
+						(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
+					)
+				AND
+				(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
+				AND
+				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
+			)
+			OR
+			(
+				(m.start_month <![CDATA[ <= ]]>  m.end_month)
+				AND
+				(m.START_TIME > m.END_TIME)
+				AND
+				(m.start_month <![CDATA[ <= ]]> MONTH(NOW()))
+				AND
+				(MONTH(NOW()) <![CDATA[ <= ]]>  m.end_month)
+				AND
+				(
+					(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
+				OR
+					(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
+				)
+			)
+			OR
+			(
+				(m.start_month >  m.end_month)
+				AND
+				(m.START_TIME > m.END_TIME)
+				AND
+				(
+					(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
+				OR
+					(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
+				)
+				AND
+				(
+					(start_month  <![CDATA[ <= ]]>  MONTH(NOW()))
+				OR
+					(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
+				)
+			);
+	</select>
 </mapper>
