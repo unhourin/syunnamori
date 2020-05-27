@@ -60,4 +60,6 @@ public class CreatureController {
 			return new AjaxResult(0,"NULL");
 		return new AjaxResult(1,"SUCCESS",list);
 	}
+	
+	
 }
