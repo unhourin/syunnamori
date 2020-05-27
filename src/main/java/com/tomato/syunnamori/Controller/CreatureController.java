@@ -28,15 +28,15 @@ public class CreatureController {
 		return new AjaxResult(1,"SUCCESS",list);
 
 	}
-	@GetMapping("/month")
+	@GetMapping("/kongetsu")
 	public AjaxResult kongetsu() {
 		List<Creature> list = creatureDao.queryThisMonth();
 		if(list.isEmpty()||list==null)
 			return new AjaxResult(0,"NULL");
 		return new AjaxResult(1,"SUCCESS",list);
 	}
-	@GetMapping("/realtime")
-	public AjaxResult realTime() {
+	@GetMapping("/riarutaimu")
+	public AjaxResult riarutaimu() {
 		List<Creature> list = creatureDao.queryRealTime();
 		if(list.isEmpty() || list ==null)
 			return new AjaxResult(0,"NULL");
