@@ -24,6 +24,8 @@
 			m.earth
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
+		<!-- 削除確認 -->
+		where c.del_flg = 0 and m.del_flg = 0
 		<!-- c_codeを小さい順に並び -->
 		order by c.c_code
 	</select>
@@ -43,7 +45,6 @@
 			c.n_zone,
 			s_zone,
 			m.end_month - month(now()) month_gap,
-			m.end_time - hour(now()) time_gap,
 			m.earth
 		from creature as c
 		inner join month as m on c.c_code = m.c_code
@@ -73,6 +74,11 @@
 				month(now()) <![CDATA[ <= ]]> m.end_month
 			)
 		)
+		<!-- 削除確認 -->
+		AND
+			c.del_flg = 0 
+		AND 
+			m.del_flg = 0
 		order by c.c_price desc;
 	</select>
 	
@@ -165,6 +171,11 @@
 				(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
 			)
 		)
+		<!-- 削除確認 -->
+		AND
+			c.del_flg = 0 
+		AND 
+			m.del_flg = 0
 		order by time_gap asc,c.c_price desc
 	</select>
 	
