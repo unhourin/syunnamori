@@ -7,6 +7,7 @@
 
 	<select id="queryAll" resultType="Creature">
 		select
+			<!-- 抽出カラム -->
 			c.c_code,
 			c.t_code,
 			c.c_name,
@@ -23,6 +24,7 @@
 			m.earth
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
+		<!-- c_codeを小さい順に並び -->
 		order by c.c_code
 	</select>
 	
