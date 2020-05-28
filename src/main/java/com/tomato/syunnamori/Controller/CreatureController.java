@@ -1,7 +1,11 @@
 
 package com.tomato.syunnamori.Controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,6 +34,8 @@ public class CreatureController {
 		if (list.isEmpty() || list == null)
 			// であったら messageを戻す
 			return new AjaxResult(0, "NULL");
+		//重複データを削除
+		list = removeDuplicates(list);
 		return new AjaxResult(1, "SUCCESS", list);
 
 	}
@@ -45,6 +51,8 @@ public class CreatureController {
 		if (list.isEmpty() || list == null)
 			// NULLのmessageを戻す
 			return new AjaxResult(0, "NULL");
+		//重複データを削除
+		list = removeDuplicates(list);
 		// 成功の場合はlistを戻す
 		return new AjaxResult(1, "SUCCESS", list);
 	}
@@ -59,7 +67,17 @@ public class CreatureController {
 		if (list.isEmpty() || list == null)
 			// 失敗したら、メッセージを戻す
 			return new AjaxResult(0, "NULL");
+		//重複データを削除
+		list = removeDuplicates(list);
 		return new AjaxResult(1, "SUCCESS", list);
+	}
+	
+	
+	//重複重複データを削除のメソッド
+	private List<Creature> removeDuplicates(List<Creature> list){
+		return list.stream().collect(
+				Collectors.collectingAndThen(
+						Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(c->c.getC_code()+";"+c.getEarth()))), ArrayList::new));
 	}
 
 }
