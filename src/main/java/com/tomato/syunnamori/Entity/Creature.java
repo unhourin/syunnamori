@@ -16,16 +16,18 @@ public class Creature{
 	private String f_sh;
 	private String sh_name;
 	private int del_flg;
-	
-	
-	private Month month;
+	private String s_zone;
+	private String n_zone;
+	private int month_gap;
+	private int time_gap;
+	private int earth;
 
-	public Month getMonth() {
-		return month;
+	public int getEarth() {
+		return earth;
 	}
 
-	public void setMonth(Month month) {
-		this.month = month;
+	public void setEarth(int earth) {
+		this.earth = earth;
 	}
 
 	public String getC_code() {
@@ -108,6 +110,38 @@ public class Creature{
 
 	public void setDel_flg(int del_flg) {
 		this.del_flg = del_flg;
+	}
+
+	public String getS_zone() {
+		return s_zone;
+	}
+
+	public void setS_zone(String s_zone) {
+		this.s_zone = s_zone;
+	}
+
+	public String getN_zone() {
+		return n_zone;
+	}
+
+	public void setN_zone(String n_zone) {
+		this.n_zone = n_zone;
+	}
+
+	public int getMonth_gap() {
+		return month_gap;
+	}
+
+	public void setMonth_gap(int month_gap) {
+		this.month_gap = month_gap;
+	}
+
+	public int getTime_gap() {
+		return time_gap;
+	}
+
+	public void setTime_gap(int time_gap) {
+		this.time_gap = time_gap;
 	}
 
 	

@@ -5,52 +5,41 @@
 <mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
 	<select id="queryAll" resultType="Creature">
 		select
-			c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
-			m.c_code "month.c_code",
-			m.earth "month.earth",
-			m.start_month "month.start_month",
-			m.end_month "month.end_month",
-			m.start_time "month.start_time",
-			m.end_time "month.end_time"
+			c.c_code,
+			c.t_code,
+			c.c_name,
+			c.c_price,
+			c.s_conditions,
+			c.img,
+			c.c_place,
+			c.f_sh,
+			c.sh_name,
+			c.n_zone,
+			s_zone,
+			m.end_month - month(now()) month_gap,
+			m.end_time - hour(now()) time_gap,
+			m.earth
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
+		order by c.c_code
 	</select>
 
 	<select id="queryThisMonth" resultType="Creature">
 		select
-		c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
-		m.c_code "month.c_code",
-		m.earth "month.earth",
-		m.start_month "month.start_month",
-		m.end_month "month.end_month",
-		m.start_time "month.start_time",
-		m.end_time "month.end_time"
-		from
-		creature as c
-		inner join
-		month as m
-		on
-		c.c_code = m.c_code
+		c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,c.n_zone,s_zone,
+		m.end_month - month(now()) month_gap,
+		m.end_time - hour(now()) time_gap,
+		m.earth
+		from creature as c
+		inner join month as m on c.c_code = m.c_code
 		where
-		m.start_month <![CDATA[ <= ]]>
-		m.end_month AND(m.start_month <![CDATA[ <= ]]>
-		MONTH(NOW()) AND MONTH(NOW()) <![CDATA[ <= ]]>
-		m.end_month)
-		or
-		m.end_month <![CDATA[ <= ]]>
-		m.start_month AND(start_month <![CDATA[ <= ]]>
-		MONTH(NOW()) OR m.end_month <![CDATA[ <= ]]>
-		MONTH(NOW()));
-
 		(
 		<!--開始月が終了月より小さいか同じ -->
-		m.start_month <![CDATA[ <= ]]>
-		m.end_month
+		m.start_month <![CDATA[ <= ]]> m.end_month
 		AND
 		(
 		<!--開始月が今月より小さいか同じ -->
-		m.start_month <![CDATA[ <= ]]>
-		month(now())
+		m.start_month <![CDATA[ <= ]]> month(now())
 		AND
 		<!--かつ、終了月が今月より大きいか同じ -->
 		month(now()) <![CDATA[ <= ]]>
@@ -71,19 +60,16 @@
 		<!--もしくは、終了月が今月より大きいか同じ -->
 		month(now()) <![CDATA[ <= ]]>
 		m.end_month
-		)
-		);
+		))
+		order by c.c_price desc;
 	</select>
 	<select id="queryRealTime" resultType="Creature">
 		<!-- これはデータベースから現在時間で存在する魚と虫の情報を取り出すSQL文です -->
 		select
-		c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,
-		m.c_code "month.c_code",
-		m.earth "month.earth",
-		m.start_month "month.start_month",
-		m.end_month "month.end_month",
-		m.start_time "month.start_time",
-		m.end_time "month.end_time"
+		c.c_code,c.t_code,c.c_name,c.c_price,c.s_conditions,c.img,c.c_place,c.f_sh,c.sh_name,c.n_zone,s_zone,
+		m.end_month - month(now()) month_gap,
+		m.end_time - hour(now()) time_gap,
+		m.earth
 		from
 		creature as c
 		inner join
@@ -174,6 +160,7 @@
 		(MONTH(NOW()) <![CDATA[ <= ]]>
 		m.end_month)
 		)
-		);
+		)
+		order by time_gap asc,c.c_price desc
 	</select>
 </mapper>
