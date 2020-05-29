@@ -26,13 +26,12 @@
 		inner join `month` m on c.c_code = m.c_code
 		<!-- 削除確認 -->
 		where c.del_flg = 0 and m.del_flg = 0
-		<!-- c_codeを小さい順に並び -->
-		order by c.c_code
 	</select>
 	
 
 	<select id="queryThisMonth" resultType="Creature">
 		select
+		<!-- 抽出カラム -->
 			c.c_code,
 			c.t_code,
 			c.c_name,
@@ -86,6 +85,7 @@
 	<select id="queryRealTime" resultType="Creature">
 		<!-- これはデータベースから現在時間で存在する魚と虫の情報を取り出すSQL文です -->
 		select
+		<!-- 抽出カラム -->
 			c.c_code,
 			c.t_code,
 			c.c_name,

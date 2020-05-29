@@ -2,6 +2,7 @@
 package com.tomato.syunnamori.Controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TreeSet;
@@ -30,12 +31,14 @@ public class CreatureController {
 		// すべとのデータをCreatureDaoから取得
 		List<Creature> list = creatureDao.queryAll();
 
-		// ヌロかどうかの確認
+		// ヌルかどうかの確認
 		if (list.isEmpty() || list == null)
 			// であったら messageを戻す
 			return new AjaxResult(0, "NULL");
-		//重複データを削除
+		// 重複データを削除
 		list = removeDuplicates(list);
+		//c_codeの小さい順にソートする
+		Collections.sort(list, new MyComparatorCode());
 		return new AjaxResult(1, "SUCCESS", list);
 
 	}
@@ -51,8 +54,10 @@ public class CreatureController {
 		if (list.isEmpty() || list == null)
 			// NULLのmessageを戻す
 			return new AjaxResult(0, "NULL");
-		//重複データを削除
+		// 重複データを削除
 		list = removeDuplicates(list);
+		//
+		Collections.sort(list,new MyComparatorPrice());
 		// 成功の場合はlistを戻す
 		return new AjaxResult(1, "SUCCESS", list);
 	}
@@ -67,17 +72,52 @@ public class CreatureController {
 		if (list.isEmpty() || list == null)
 			// 失敗したら、メッセージを戻す
 			return new AjaxResult(0, "NULL");
-		//重複データを削除
+		// 重複データを削除
 		list = removeDuplicates(list);
+		//
+		Collections.sort(list,new MyComparatorTimeGap());
 		return new AjaxResult(1, "SUCCESS", list);
 	}
-	
-	
-	//重複重複データを削除のメソッド
-	private List<Creature> removeDuplicates(List<Creature> list){
-		return list.stream().collect(
-				Collectors.collectingAndThen(
-						Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(c->c.getC_code()+";"+c.getEarth()))), ArrayList::new));
+
+	// 作成者：雲鳳麟
+	// 重複重複データを削除のメソッド
+	private List<Creature> removeDuplicates(List<Creature> list) {
+		return list.stream()
+				.collect(Collectors.collectingAndThen(
+						Collectors.toCollection(
+								() -> new TreeSet<>(Comparator.comparing(c -> c.getC_code() + ";" + c.getEarth()))),
+						ArrayList::new));
 	}
 
+	// 作成者：雲鳳麟
+		// c_codeのコンパレータ
+		static class MyComparatorCode implements Comparator<Creature> {
+
+			@Override
+			public int compare(Creature c1, Creature c2) {
+				return (c1.getC_code() - c2.getC_code());
+			}
+		}
+		
+		// 作成者：雲鳳麟
+		//c_priceのコンパレータ
+		static class MyComparatorPrice implements Comparator<Creature> {
+			
+			@Override
+			public int compare(Creature c1, Creature c2) {
+				return (c2.getC_price() - c1.getC_price());
+			}
+		}
+		
+		// 作成者：雲鳳麟
+		// time_gapのコンパレータ
+		static class MyComparatorTimeGap implements Comparator<Creature> {
+			
+			@Override
+			public int compare(Creature c1, Creature c2) {
+				return (c1.getTime_gap() - c2.getTime_gap());
+			}
+		}
+
 }
+

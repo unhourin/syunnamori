@@ -6,7 +6,7 @@ package com.tomato.syunnamori.Entity;
  * テーブルCreatureの実体
  */
 public class Creature{
-	private String c_code;
+	private int c_code;
 	private String t_code;
 	private String c_name;
 	private int c_price;
@@ -30,11 +30,11 @@ public class Creature{
 		this.earth = earth;
 	}
 
-	public String getC_code() {
+	public int getC_code() {
 		return c_code;
 	}
 
-	public void setC_code(String c_code) {
+	public void setC_code(int c_code) {
 		this.c_code = c_code;
 	}
 
