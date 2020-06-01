@@ -1,4 +1,3 @@
-
 package com.tomato.syunnamori.Controller;
 
 import java.util.ArrayList;
@@ -16,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tomato.syunnamori.Dao.CreatureDao;
 import com.tomato.syunnamori.Dto.AjaxResult;
 import com.tomato.syunnamori.Entity.Creature;
+
+/**
+ * @author 雲鳳麟、黄益柱、楊炯
+ * @version 2020/05/28　10:00:54 
+ * Creatureのコントローラ
+ */
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)

@@ -1,5 +1,11 @@
 package com.tomato.syunnamori.Dto;
 
+/**
+ * @author 雲鳳麟
+ * @version 2020/05/28　10:00:54 
+ * jsonの形の定義
+ */
+
 public class AjaxResult {
 
 	private int code;

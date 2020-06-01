@@ -1,10 +1,11 @@
 package com.tomato.syunnamori.Entity;
 
 /**
- * @author unhourin
+ * @author 雲鳳麟
  * @version 2020/05/2510:19:54 
  * テーブルCreatureの実体
  */
+
 public class Creature{
 	private int c_code;
 	private String t_code;

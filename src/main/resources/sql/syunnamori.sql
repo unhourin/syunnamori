@@ -1,3 +1,8 @@
+/**
+ * @author 雲鳳麟
+ * @version 2020/05/28　10:00:54 
+ * SQLの実行スクリプト
+ */
 ﻿
 DROP TABLE IF EXISTS `month`;
 

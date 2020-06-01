@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
-*@author unhourin
+*@author 雲鳳麟
 *@version 2020/05/2916:40:54
 *クラス説明
 */

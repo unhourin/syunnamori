@@ -2,6 +2,13 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- 
+* @author 雲鳳麟、黄益柱、楊炯
+* @version 2020/05/28　10:00:54 
+* マッパ
+-->
+     
 <mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
 
 
