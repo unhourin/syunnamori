@@ -90,7 +90,7 @@ public class CreatureController {
 		return list.stream()
 				.collect(Collectors.collectingAndThen(
 						Collectors.toCollection(
-								() -> new TreeSet<>(Comparator.comparing(c -> c.getC_code() + ";" + c.getEarth()))),
+								() -> new TreeSet<>(Comparator.comparing(c -> c.getC_code() + ";" + c.getEarth()+ ";" + c.getT_code()))),
 						ArrayList::new));
 	}
 
