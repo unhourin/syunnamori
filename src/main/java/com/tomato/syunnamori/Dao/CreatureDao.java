@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tomato.syunnamori.Entity.Creature;
+import com.tomato.syunnamori.Entity.CreatureUn;
 
 /**
  * @author 雲鳳麟、黄益柱、楊炯
@@ -16,7 +17,7 @@ import com.tomato.syunnamori.Entity.Creature;
 public interface CreatureDao {
 	
 	// 作成者：雲鳳麟
-	List<Creature> queryAll();
+	List<CreatureUn> queryAll();
 	
 	
 	// 作成者：雲鳳麟

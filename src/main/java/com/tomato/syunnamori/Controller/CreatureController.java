@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tomato.syunnamori.Dao.CreatureDao;
 import com.tomato.syunnamori.Dto.AjaxResult;
 import com.tomato.syunnamori.Entity.Creature;
+import com.tomato.syunnamori.Entity.CreatureUn;
 
 /**
  * @author 雲鳳麟、黄益柱、楊炯
@@ -33,19 +34,24 @@ public class CreatureController {
 	// 全表示画面のAPI
 	@GetMapping("/zenhyouji")
 	public AjaxResult zenhyouji() {
-		// すべとのデータをCreatureDaoから取得
-		List<Creature> list = creatureDao.queryAll();
+//		// すべとのデータをCreatureDaoから取得
+//		List<Creature> list = creatureDao.queryAll();
+//
+//		// ヌルかどうかの確認
+//		if (list.isEmpty() || list == null)
+//			// であったら messageを戻す
+//			return new AjaxResult(0, "NULL");
+//		// 重複データを削除
+//		list = removeDuplicates(list);
+//		//c_codeの小さい順にソートする
+//		Collections.sort(list, new MyComparatorCode());
+//		return new AjaxResult(1, "SUCCESS", list);
 
-		// ヌルかどうかの確認
-		if (list.isEmpty() || list == null)
-			// であったら messageを戻す
-			return new AjaxResult(0, "NULL");
-		// 重複データを削除
-		list = removeDuplicates(list);
-		//c_codeの小さい順にソートする
-		Collections.sort(list, new MyComparatorCode());
-		return new AjaxResult(1, "SUCCESS", list);
-
+		List<CreatureUn> list = creatureDao.queryAll();
+		for(CreatureUn c : list) {
+			System.out.println(c);
+		}
+		return null;
 	}
 
 	// 作成者：黄益柱

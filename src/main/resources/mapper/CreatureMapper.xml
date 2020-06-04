@@ -12,9 +12,8 @@
 <mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
 
 
-	<select id="queryAll" resultType="Creature">
+<!--<select id="queryAll" resultType="Creature">
 		select
-			<!-- 抽出カラム -->
 			c.c_code,
 			c.t_code,
 			c.c_name,
@@ -31,9 +30,33 @@
 			m.earth
 		from creature c
 		inner join `month` m on c.c_code = m.c_code
-		<!-- 削除確認 -->
 		where c.del_flg = 0 and m.del_flg = 0
-	</select>
+	</select> 
+-->
+
+<select id="queryAll" resultType="CreatureUn">
+select
+	c.c_code,
+	c.c_name,
+	c.t_code,
+	c.img_url,
+	c.sh_code,
+	c.c_price,
+	c.p_code,
+	p.p_name,
+	fs.f_sh,
+	fs.sh_name,
+	tt.n_month_zone,
+	tt.s_month_zone,
+	tt.t_zone,
+	tt.isAllDay,
+	tt.isAllYear
+from
+	creature c
+	inner join place p on c.p_code = p.p_code
+	inner join fish_shadow fs on c.sh_code = f.sh_code
+	inner join time_table tt on c.p_code = tt.p_code
+</select>
 	
 
 	<select id="queryThisMonth" resultType="Creature">
