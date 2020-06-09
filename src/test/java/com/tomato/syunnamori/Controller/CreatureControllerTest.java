@@ -5,6 +5,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +19,9 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.tomato.syunnamori.Dao.CreatureDao;
+import com.tomato.syunnamori.Entity.Creature;
+
 /**
 *@author 雲鳳麟
 *@version 2020/05/2916:40:54
@@ -28,6 +33,9 @@ class CreatureControllerTest {
 
 	@Autowired
 	WebApplicationContext context;
+	
+	@Autowired
+	private CreatureDao dao;
 
 	MockMvc mockMvc;
 
@@ -41,18 +49,17 @@ class CreatureControllerTest {
 	void testZenhyouji() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/zenhyouji")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(MockMvcResultMatchers.status().isOk());
-	}
-
-	@Test
-	void testKongetsu() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/kongetsu")
-				.contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(MockMvcResultMatchers.status().isOk());
-	}
-
-	@Test
-	void testRealTime() throws Exception{
-		mockMvc.perform(MockMvcRequestBuilders.get("/riarutaimu")
-				.contentType(MediaType.APPLICATION_JSON_UTF8)).andExpect(MockMvcResultMatchers.status().isOk());
+		
+		
+		List<Creature> list = dao.queryAll();
+		if(list.isEmpty()||list==null) {
+			
+		}else {
+			for(Creature c:list) {
+				System.out.println(c);
+			}
+		}
+		
 	}
 
 }

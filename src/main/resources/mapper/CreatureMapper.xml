@@ -11,202 +11,23 @@
      
 <mapper namespace="com.tomato.syunnamori.Dao.CreatureDao">
 
-
-<!--<select id="queryAll" resultType="Creature">
-		select
-			c.c_code,
-			c.t_code,
-			c.c_name,
-			c.c_price,
-			c.s_conditions,
-			c.img,
-			c.c_place,
-			c.f_sh,
-			c.sh_name,
-			c.n_zone,
-			s_zone,
-			m.end_month - month(now()) month_gap,
-			m.end_time - hour(now()) time_gap,
-			m.earth
-		from creature c
-		inner join `month` m on c.c_code = m.c_code
-		where c.del_flg = 0 and m.del_flg = 0
-	</select> 
--->
-
-<select id="queryAll" resultType="CreatureUn">
+<select id="queryAll" resultType="Creature">
 select
 	c.c_code,
 	c.c_name,
-	c.t_code,
-	c.img_url,
-	c.sh_code,
+	c.f_sh,
 	c.c_price,
 	c.p_code,
 	p.p_name,
-	fs.f_sh,
-	fs.sh_name,
-	tt.n_month_zone,
-	tt.s_month_zone,
-	tt.t_zone,
-	tt.isAllDay,
-	tt.isAllYear
+	tz.i_code as 'TimeZone.iCode',
+	tz.n_month as 'TimeZone.nMonth',
+	tz.s_month as 'TimeZone.sMonth',
+	tz.time_zone as 'TimeZone.timeZone'
 from
 	creature c
 	inner join place p on c.p_code = p.p_code
-	inner join fish_shadow fs on c.sh_code = f.sh_code
-	inner join time_table tt on c.p_code = tt.p_code
+	inner join time_zone tz on c.c_code = tz.c_code
 </select>
 	
 
-	<select id="queryThisMonth" resultType="Creature">
-		select
-		<!-- 抽出カラム -->
-			c.c_code,
-			c.t_code,
-			c.c_name,
-			c.c_price,
-			c.s_conditions,
-			c.img,
-			c.c_place,
-			c.f_sh,
-			c.sh_name,
-			c.n_zone,
-			s_zone,
-			m.end_month - month(now()) month_gap,
-			m.earth
-		from creature as c
-		inner join month as m on c.c_code = m.c_code
-		where
-		(
-			<!--開始月が終了月より小さいか同じ -->
-			m.start_month <![CDATA[ <= ]]> m.end_month
-			AND
-			(
-				<!--開始月が今月より小さいか同じ -->
-				m.start_month <![CDATA[ <= ]]> month(now())
-				AND
-				<!--かつ、終了月が今月より大きいか同じ -->
-				month(now()) <![CDATA[ <= ]]> m.end_month
-			)
-		)
-		OR
-		(
-			<!--開始月が終了月より大きい -->
-			m.start_month <![CDATA[ > ]]> m.end_month
-			AND
-			(
-				<!--開始月が今月より小さいか同じ -->
-				m.start_month <![CDATA[ <= ]]> month(now())
-				OR
-				<!--もしくは、終了月が今月より大きいか同じ -->
-				month(now()) <![CDATA[ <= ]]> m.end_month
-			)
-		)
-		<!-- 削除確認 -->
-		AND
-			c.del_flg = 0 
-		AND 
-			m.del_flg = 0
-		order by c.c_price desc;
-	</select>
-	
-	
-	<select id="queryRealTime" resultType="Creature">
-		<!-- これはデータベースから現在時間で存在する魚と虫の情報を取り出すSQL文です -->
-		select
-		<!-- 抽出カラム -->
-			c.c_code,
-			c.t_code,
-			c.c_name,
-			c.c_price,
-			c.s_conditions,
-			c.img,
-			c.c_place,
-			c.f_sh,
-			c.sh_name,
-			c.n_zone,
-			s_zone,
-			m.end_month - month(now()) month_gap,
-			m.end_time - hour(now()) time_gap,
-			m.earth
-		from
-			creature as c
-		inner join month as m on c.c_code = m.c_code
-		where
-		(	
-			<!--これは全ての開始時間は終了時間より小さいケースです、その時、開始時間＜現在時間＜終了時間、の判断をとります -->
-			(m.start_month <![CDATA[ <= ]]> m.end_month)
-			AND
-			(m.START_TIME <![CDATA[ <= ]]> m.END_TIME)
-			AND
-			(m.start_month <![CDATA[ <= ]]> MONTH(NOW()))
-			AND
-			(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
-			AND
-			(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
-			AND
-			(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
-		)
-		OR
-		(	
-			<!--これは開始時間は終了時間より小さいそして開始月は終了月より大きケースです、その時、開始時間＜現在時間＜終了時間、開始月＜現在時間、終了月＞現在時間の判断をとります -->
-			(m.start_month > m.end_month)
-			AND
-			(m.START_TIME <![CDATA[ <= ]]> m.END_TIME)
-			AND
-			(
-				(start_month  <![CDATA[ <= ]]> MONTH(NOW()))
-				OR
-				(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
-			)
-			AND
-			(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
-			AND
-			(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
-		)
-		OR
-		(
-			<!--これは開始時間は終了時間より大きいそして開始月は終了月より小さいケースです、その時、開始月＜現在時間＜終了月、開始時間＜現在時間、終了時間＞現在時間の判断をとります -->
-			(m.start_month <![CDATA[ <= ]]> m.end_month)
-			AND
-			(m.START_TIME > m.END_TIME)
-			AND
-			(m.start_month <![CDATA[ <= ]]> MONTH(NOW()))
-			AND
-			(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
-			AND
-			(
-				(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
-				OR
-				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
-			)
-		)
-		OR
-		(
-			<!--これは開始時間は終了時間より大きいそして開始月は終了月より大きいケースです、その時、開始月＜現在時間、終了月＞現在時間、開始時間＜現在時間、終了時間＞現在時間の判断をとります -->
-			(m.start_month > m.end_month)
-			AND
-			(m.START_TIME > m.END_TIME)
-			AND
-			(
-				(m.START_TIME <![CDATA[ <= ]]> HOUR(NOW()))
-				OR
-				(HOUR(NOW()) <![CDATA[ <= ]]> m.END_TIME)
-			)
-			AND
-			(
-				(start_month  <![CDATA[ <= ]]> MONTH(NOW()))
-				OR
-				(MONTH(NOW()) <![CDATA[ <= ]]> m.end_month)
-			)
-		)
-		<!-- 削除確認 -->
-		AND
-			c.del_flg = 0 
-		AND 
-			m.del_flg = 0
-		order by time_gap asc,c.c_price desc
-	</select>
-	
 </mapper>
