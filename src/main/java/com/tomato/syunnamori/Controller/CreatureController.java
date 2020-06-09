@@ -1,7 +1,6 @@
 package com.tomato.syunnamori.Controller;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,70 +40,58 @@ public class CreatureController {
 		return new AjaxResult(1, "SUCCESS", list);
 	}
 
-//	// 今月表示画面のAPI
+	// 今月表示画面のAPI
 	@GetMapping("/kongetsu")
 	public AjaxResult kongetsu() {
 		// 今月にとれるデータをCreatureDaoから取得
 		List<Creature> list = creatureDao.queryAll();
+		// listが空っぽかNULLかの判断
+		if (list.isEmpty() || list == null)
+			// NULLのmessageを戻す
+			return new AjaxResult(0, "NULL");
+
 		TimeCheck timeCheck = new TimeCheck();
 		List<List<Creature>> tmpList = timeCheck.timeCheck(list, false);
-//		// listが空っぽかNULLかの判断
-//		if (list.isEmpty() || list == null)
-//			// NULLのmessageを戻す
-//			return new AjaxResult(0, "NULL");
-//		
-//		// 成功の場合はlistを戻す
-		return new AjaxResult(1, "SUCCESS", tmpList.get(0),tmpList.get(1));
+
+		// 成功の場合はlistを戻す
+		return new AjaxResult(1, "SUCCESS", tmpList.get(0), tmpList.get(1));
 //		return null;
 	}
-//
-//	// 作成者=>楊炯
-//	// 現在時間表現のAPI
-//	@GetMapping("/riarutaimu")
-//	public AjaxResult realTime() {
-//		// 必要なデータをcreatureDaoから取得
-//		List<Creature> list = creatureDao.queryRealTime();
-//		// 取得成功したかどうかを確認
-//		if (list.isEmpty() || list == null)
-//			// 失敗したら、メッセージを戻す
-//			return new AjaxResult(0, "NULL");
-//		// 重複データを削除
-//		list = removeDuplicates(list);
-//		//
-//		Collections.sort(list,new MyComparatorTimeGap());
-//		return new AjaxResult(1, "SUCCESS", list);
-//	}
 
-//	// 作成者：雲鳳麟
-//	// 重複重複データを削除のメソッド
-//	private List<Creature> removeDuplicates(List<Creature> list) {
-//		return list.stream()
-//				.collect(Collectors.collectingAndThen(
-//						Collectors.toCollection(
-//								() -> new TreeSet<>(Comparator.comparing(c -> c.getC_code() + ";" + c.getEarth()+ ";" + c.getT_code()))),
-//						ArrayList::new));
-//	}
-//
-//	// 作成者：雲鳳麟
-//		// c_codeのコンパレータ
-//		static class MyComparatorCode implements Comparator<Creature> {
-//
-//			@Override
-//			public int compare(Creature c1, Creature c2) {
-//				return (c1.getC_code() - c2.getC_code());
-//			}
-//		}
-//		
-//		// 作成者：雲鳳麟
-//		//c_priceのコンパレータ
-//		static class MyComparatorPrice implements Comparator<Creature> {
-//			
-//			@Override
-//			public int compare(Creature c1, Creature c2) {
-//				return (c2.getC_price() - c1.getC_price());
-//			}
-//		}
-//		
+	// 現在時間表現のAPI
+	@GetMapping("/riarutaimu")
+	public AjaxResult riarutaimu() {
+		// 必要なデータをcreatureDaoから取得
+		List<Creature> list = creatureDao.queryAll();
+		// 取得成功したかどうかを確認
+		if (list.isEmpty() || list == null)
+			// 失敗したら、メッセージを戻す
+			return new AjaxResult(0, "NULL");
+		TimeCheck timeCheck = new TimeCheck();
+		List<List<Creature>> tmpList = timeCheck.timeCheck(list, true);
+		return new AjaxResult(1, "SUCCESS", tmpList.get(0), tmpList.get(1));
+	}
+
+	// 作成者：雲鳳麟
+	// c_codeのコンパレータ
+	static class MyComparatorCode implements Comparator<Creature> {
+
+		@Override
+		public int compare(Creature c1, Creature c2) {
+			return (Integer.valueOf(c1.getcCode()) - Integer.valueOf(c2.getcCode()));
+		}
+	}
+
+	// 作成者：雲鳳麟
+	// c_priceのコンパレータ
+	static class MyComparatorPrice implements Comparator<Creature> {
+
+		@Override
+		public int compare(Creature c1, Creature c2) {
+			return (Integer.valueOf(c1.getcPrice()) - Integer.valueOf(c2.getcPrice()));
+		}
+	}
+
 //		// 作成者：雲鳳麟
 //		// time_gapのコンパレータ
 //		static class MyComparatorTimeGap implements Comparator<Creature> {

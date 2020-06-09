@@ -20,7 +20,7 @@ public class AjaxResult {
 		this.data = data;
 	}
 	
-	public AjaxResult(int code, String msg, Object nData,Object sData) {
+	public AjaxResult(int code, String msg, Object sData,Object nData) {
 		super();
 		this.code = code;
 		this.msg = msg;
