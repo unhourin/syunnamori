@@ -73,7 +73,7 @@ public class TimeCheck {
 	}
 
 	public Boolean isDuringThisDay(int startMonth, int endMonth, int startHour, int endHour) {
-		if (isDuringThisMonth(startMonth, endMonth)) {
+		if (!isDuringThisMonth(startMonth, endMonth)) {
 			return false;
 		}
 		Date nowDate = new Date();
