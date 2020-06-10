@@ -2,7 +2,7 @@ package com.tomato.syunnamori.Entity;
 /**
 *@author unhourin
 *@version 2020/06/0817:46:53
-*クラス説明
+*テーブルTimeZoneのエンティティ
 */
 public class TimeZone {
 	private int nMonth;

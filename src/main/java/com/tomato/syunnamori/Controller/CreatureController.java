@@ -1,5 +1,6 @@
 package com.tomato.syunnamori.Controller;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -37,6 +38,8 @@ public class CreatureController {
 			// NULLであったら messageを戻す
 			return new AjaxResult(0, "NULL");
 
+		//c_codeが小さい順にソートする
+		Collections.sort(list,new MyComparatorCode());
 		return new AjaxResult(1, "SUCCESS", list);
 	}
 
@@ -50,11 +53,20 @@ public class CreatureController {
 			// NULLのmessageを戻す
 			return new AjaxResult(0, "NULL");
 
+		//今月に取れる生物のデータを取り出す
+		//北半球のデータがnDataに保存
+		//南半球のデータがsDataに保存
 		TimeCheck timeCheck = new TimeCheck();
 		List<List<Creature>> tmpList = timeCheck.timeCheck(list, false);
 
+		List<Creature> sData = tmpList.get(0);
+		List<Creature> nData = tmpList.get(1);
+
+		//値段が高い順にソートする
+		Collections.sort(sData, new MyComparatorPrice());
+		Collections.sort(nData, new MyComparatorPrice());
 		// 成功の場合はlistを戻す
-		return new AjaxResult(1, "SUCCESS", tmpList.get(0), tmpList.get(1));
+		return new AjaxResult(1, "SUCCESS", sData, nData);
 //		return null;
 	}
 
@@ -67,8 +79,18 @@ public class CreatureController {
 		if (list.isEmpty() || list == null)
 			// 失敗したら、メッセージを戻す
 			return new AjaxResult(0, "NULL");
+		
+		//今の時間に取れる生物のデータを取り出す
 		TimeCheck timeCheck = new TimeCheck();
 		List<List<Creature>> tmpList = timeCheck.timeCheck(list, true);
+		
+		//
+		List<Creature> sData = tmpList.get(0);
+		List<Creature> nData = tmpList.get(1);
+
+		//c_codeが小さい順にソートする
+		Collections.sort(sData, new MyComparatorPrice());
+		Collections.sort(nData, new MyComparatorPrice());
 		return new AjaxResult(1, "SUCCESS", tmpList.get(0), tmpList.get(1));
 	}
 

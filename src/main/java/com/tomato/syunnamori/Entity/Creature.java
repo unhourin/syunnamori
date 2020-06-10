@@ -2,7 +2,7 @@ package com.tomato.syunnamori.Entity;
 /**
 *@author unhourin
 *@version 2020/06/0817:31:56
-*クラス説明
+*テーブルCreatureのエンティティ
 */
 public class Creature {
 
