@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.tomato.syunnamori.Entity.Creature;
+import com.tomato.syunnamori.Enum.FishShadow;
 
 /**
  * @author unhourin
@@ -16,7 +17,9 @@ public class TimeCheck {
 		List<Creature> sData = new ArrayList<Creature>();
 		List<List<Creature>> resultList = new ArrayList<List<Creature>>();
 		for (Creature c : list) {
-
+//			c.setfShName(FishShadow.getfShName(c.getfSh()));
+//			System.out.println(FishShadow.getfShName(4));
+//			System.out.println(FishShadow.getfShName(3));
 			int nMonthZone = c.getTimeZone().getnMonth();
 			int sMonthZone = c.getTimeZone().getsMonth();
 			int timeZone = c.getTimeZone().getTimeZone();

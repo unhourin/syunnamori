@@ -1,4 +1,7 @@
 package com.tomato.syunnamori.Entity;
+
+import com.tomato.syunnamori.Enum.FishShadow;
+
 /**
 *@author unhourin
 *@version 2020/06/0817:31:56
@@ -8,11 +11,16 @@ public class Creature {
 
 	private String cCode;
 	private String cName;
-	private String fSh;
+	
+
+	private int fSh;
+	private String fShName;
 	private int cPrice;
 	private String pCode;
 	private String pName;
 	private TimeZone timeZone;
+	
+	
 	
 	public String getcCode() {
 		return cCode;
@@ -26,12 +34,20 @@ public class Creature {
 	public void setcName(String cName) {
 		this.cName = cName;
 	}
-	public String getfSh() {
+	public int getfSh() {
 		return fSh;
 	}
-	public void setfSh(String fSh) {
+	public void setfSh(int fSh) {
 		this.fSh = fSh;
 	}
+	
+	public String getfShName() {
+		return FishShadow.getfShName(fSh);
+	}
+	public void setfShName(String fShName) {
+		this.fShName = fShName;
+	}
+	
 	public int getcPrice() {
 		return cPrice;
 	}
