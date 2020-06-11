@@ -1,10 +1,8 @@
 package com.tomato.syunnamori.DataProc;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
 import com.tomato.syunnamori.Entity.Creature;
 
@@ -52,52 +50,35 @@ public class TimeCheck {
 	}
 
 	public Boolean isDuringThisMonth(int startMonth, int endMonth) {
-		// 今の時間をdateで取る
-		Date nowDate = new Date();
-		// 年を取る
-		int thisYear = nowDate.getYear();
-		// startMonth,endMonthを作成
-		Date startDate = new Date(thisYear, startMonth - 1, 1);
-		Date endDate = new Date(thisYear, endMonth - 1, 1);
-		// startMonthがendMonthより多き場合
-		if (startMonth > endMonth) {
-			endDate = new Date(thisYear + 1, endMonth - 1, 1);
-		}
-		// 今の時間を比べる
-		if (nowDate.after(startDate) && nowDate.before(endDate)) {
+		Calendar calendar = Calendar.getInstance();
+		int m = calendar.get(Calendar.MONTH) + 1;
+		for (int i = startMonth; i != endMonth; i++) {
 
-			return true;
-		} else {
-			return false;
+			if (i > 12) {
+				i = 1;
+			}
+			if (m == i) {
+
+				return true;
+			}
 		}
+		return false;
 	}
 
 	public Boolean isDuringThisDay(int startMonth, int endMonth, int startHour, int endHour) {
 		if (!isDuringThisMonth(startMonth, endMonth)) {
 			return false;
 		}
-		Date nowDate = new Date();
-		// 年を取る
-		int thisYear = nowDate.getYear();
-		int thisMonth = nowDate.getMonth() + 1;
-		int thisDay = nowDate.getDate();
-		System.out.println(thisDay);
-		// startMonth,endMonthを作成
-		Date startDate = new Date(thisYear, thisMonth - 1, thisDay, startHour, 0);
-		Date endDate = new Date(thisYear, thisMonth - 1, thisDay, endHour, 0);
-		if (startHour > endHour) {
-			endDate = new Date(thisYear, thisMonth - 1, thisDay + 1, endHour, 0);
+		Calendar calendar = Calendar.getInstance();
+		int h = calendar.get(Calendar.HOUR_OF_DAY);
+		for (int i = startHour; i != endHour; i++) {
+			if (i > 24) {
+				i = 1;
+			}
+			if (h == i) {
+				return true;
+			}
 		}
-		System.out.println(startDate);
-		System.out.println(nowDate);
-		System.out.println(endDate);
-		if (nowDate.after(startDate) && nowDate.before(endDate)) {
-
-			System.out.println(true);
-			return true;
-		} else {
-			System.out.println(false);
-			return false;
-		}
+		return false;
 	}
 }

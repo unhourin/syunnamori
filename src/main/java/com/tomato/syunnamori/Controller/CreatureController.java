@@ -91,7 +91,7 @@ public class CreatureController {
 		//c_codeが小さい順にソートする
 		Collections.sort(sData, new MyComparatorPrice());
 		Collections.sort(nData, new MyComparatorPrice());
-		return new AjaxResult(1, "SUCCESS", tmpList.get(0), tmpList.get(1));
+		return new AjaxResult(1, "SUCCESS", sData,nData);
 	}
 
 	// 作成者：雲鳳麟
