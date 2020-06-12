@@ -22,6 +22,7 @@ public enum FishShadow {
 		this.placeStr = placeStr;
 	}
 	
+	//
 	public static String getfShName(int pCode) {
         for (FishShadow fishShadow : FishShadow.values()) {
             if (fishShadow.getpCode() == pCode) {
