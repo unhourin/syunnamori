@@ -12,13 +12,13 @@ import com.tomato.syunnamori.Entity.Creature;
  */
 public class TimeCheck {
 	public List<List<Creature>> timeCheck(List<Creature> list, boolean isCheckHour) {
-		//戻り値を宣言する
+		// 戻り値を宣言する
 		List<Creature> nData = new ArrayList<Creature>();
 		List<Creature> sData = new ArrayList<Creature>();
 		List<List<Creature>> resultList = new ArrayList<List<Creature>>();
-		//一行ずづに処理を行う
+		// 一行ずづに処理を行う
 		for (Creature c : list) {
-			//北半球と南半球の出現月
+			// 北半球と南半球の出現月
 			int nMonthZone = c.getTimeZone().getnMonth();
 			int sMonthZone = c.getTimeZone().getsMonth();
 			int timeZone = c.getTimeZone().getTimeZone();
@@ -54,7 +54,7 @@ public class TimeCheck {
 	public Boolean isDuringThisMonth(int startMonth, int endMonth) {
 		Calendar calendar = Calendar.getInstance();
 		int m = calendar.get(Calendar.MONTH) + 1;
-		for (int i = startMonth; i != endMonth; i++) {
+		for (int i = startMonth; i != endMonth + 1; i++) {
 
 			if (i > 12) {
 				i = 1;

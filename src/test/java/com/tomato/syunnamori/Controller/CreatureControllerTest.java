@@ -51,29 +51,12 @@ class CreatureControllerTest {
 		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
 	}
 
-//	@Test
-//	void testZenhyouji() throws Exception {
-//		mockMvc.perform(MockMvcRequestBuilders.get("/zenhyouji").contentType(MediaType.APPLICATION_JSON_UTF8))
-//				.andExpect(MockMvcResultMatchers.status().isOk());
-//
-//		List<Creature> list = dao.queryAll();
-//		if (list.isEmpty() || list == null) {
-//
-//		} else {
-//			Collections.sort(list, new MyComparatorCode());
-//			for (Creature c : list) {
-//				System.out.println(c);
-//			}
-//		}
-//
-//	}
-
 	//全表示APIのテスト
 	//テスト項目：１、status　２、レスポンス
 	@Test
 	void testZenhyouji() throws Exception {
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/zenhyouji").contentType("text/html")
-				.accept(MediaType.APPLICATION_JSON);
+				.accept(MediaType.APPLICATION_JSON_UTF8);
 
 		// リクエストを送信して結果を取得する
 		ResultActions perform = mockMvc.perform(requestBuilder);
@@ -115,7 +98,7 @@ class CreatureControllerTest {
 	@Test
 	void riarutaimu() throws Exception {
 		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/riarutaimu")
-				.contentType("text/html").accept(MediaType.APPLICATION_JSON);
+				.contentType("text/html").accept(MediaType.APPLICATION_JSON_UTF8);
 
 		// リクエストを送信して結果を取得する
 		ResultActions perform = mockMvc.perform(requestBuilder);
