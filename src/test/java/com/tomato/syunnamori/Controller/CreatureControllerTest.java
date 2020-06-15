@@ -52,65 +52,65 @@ class CreatureControllerTest {
 	}
 
 	//全表示APIのテスト
-	//テスト項目：１、status　２、レスポンス
-	@Test
-	void testZenhyouji() throws Exception {
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/zenhyouji").contentType("text/html")
-				.accept(MediaType.APPLICATION_JSON_UTF8);
-
-		// リクエストを送信して結果を取得する
-		ResultActions perform = mockMvc.perform(requestBuilder);
-
-		// リクエスト結果を確認する
-		// １、statusの確認
-		perform.andExpect(MockMvcResultMatchers.status().isOk());
-
-		// ２、レスポンス（response）の確認
-		MvcResult mvcResult = perform.andReturn();
-		String response = mvcResult.getResponse().getContentAsString();
-		System.out.println(response);
-	}
-
-	//今月APIのテスト
-	//テスト項目：１、status　２、レスポンス
-	@Test
-	void kongetsu() throws Exception {
-		// リクエストを構築する
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/kongetsu").contentType("text/html")
-				.accept(MediaType.APPLICATION_JSON_UTF8);
-
-		// リクエストを送信して結果を取得する
-		ResultActions perform = mockMvc.perform(requestBuilder);
-
-		// リクエスト結果を確認する
-		// statusの確認
-		perform.andExpect(MockMvcResultMatchers.status().isOk());
-
-		// レスポンス（response）の確認
-		MvcResult mvcResult = perform.andReturn();
-		String response = mvcResult.getResponse().getContentAsString();
-		System.out.println(response);
-	}
-
-	
-	//リアルタイムAPIのテスト
-	//テスト項目：１、status　２、レスポンス
-	@Test
-	void riarutaimu() throws Exception {
-		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/riarutaimu")
-				.contentType("text/html").accept(MediaType.APPLICATION_JSON_UTF8);
-
-		// リクエストを送信して結果を取得する
-		ResultActions perform = mockMvc.perform(requestBuilder);
-
-		// リクエスト結果を確認する
-		// statusの確認
-		perform.andExpect(MockMvcResultMatchers.status().isOk());
-
-		// レスポンス（response）の確認
-		MvcResult mvcResult = perform.andReturn();
-		String response = mvcResult.getResponse().getContentAsString();
-		System.out.println(response);
-	}
+//	//テスト項目：１、status　２、レスポンス
+//	@Test
+//	void testZenhyouji() throws Exception {
+//		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/zenhyouji").contentType("text/html")
+//				.accept(MediaType.APPLICATION_JSON_UTF8);
+//
+//		// リクエストを送信して結果を取得する
+//		ResultActions perform = mockMvc.perform(requestBuilder);
+//
+//		// リクエスト結果を確認する
+//		// １、statusの確認
+//		perform.andExpect(MockMvcResultMatchers.status().isOk());
+//
+//		// ２、レスポンス（response）の確認
+//		MvcResult mvcResult = perform.andReturn();
+//		String response = mvcResult.getResponse().getContentAsString();
+//		System.out.println(response);
+//	}
+//
+//	//今月APIのテスト
+//	//テスト項目：１、status　２、レスポンス
+//	@Test
+//	void kongetsu() throws Exception {
+//		// リクエストを構築する
+//		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/kongetsu").contentType("text/html")
+//				.accept(MediaType.APPLICATION_JSON_UTF8);
+//
+//		// リクエストを送信して結果を取得する
+//		ResultActions perform = mockMvc.perform(requestBuilder);
+//
+//		// リクエスト結果を確認する
+//		// statusの確認
+//		perform.andExpect(MockMvcResultMatchers.status().isOk());
+//
+//		// レスポンス（response）の確認
+//		MvcResult mvcResult = perform.andReturn();
+//		String response = mvcResult.getResponse().getContentAsString();
+//		System.out.println(response);
+//	}
+//
+//	
+//	//リアルタイムAPIのテスト
+//	//テスト項目：１、status　２、レスポンス
+//	@Test
+//	void riarutaimu() throws Exception {
+//		MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/riarutaimu")
+//				.contentType("text/html").accept(MediaType.APPLICATION_JSON_UTF8);
+//
+//		// リクエストを送信して結果を取得する
+//		ResultActions perform = mockMvc.perform(requestBuilder);
+//
+//		// リクエスト結果を確認する
+//		// statusの確認
+//		perform.andExpect(MockMvcResultMatchers.status().isOk());
+//
+//		// レスポンス（response）の確認
+//		MvcResult mvcResult = perform.andReturn();
+//		String response = mvcResult.getResponse().getContentAsString();
+//		System.out.println(response);
+//	}
 
 }
