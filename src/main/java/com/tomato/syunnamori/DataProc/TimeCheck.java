@@ -80,7 +80,7 @@ public class TimeCheck {
 			// 今月が入れるかどうか
 			if (m == i) {
 
-				return false;
+				return true;
 			}
 		}
 		return false;
@@ -97,11 +97,11 @@ public class TimeCheck {
 		// 初期値：開始時間
 		// 終了条件：終了時間に超えること
 		for (int i = startHour; i != endHour; i++) {
-			//二十四時に超えたら一時に戻る
+			// 二十四時に超えたら一時に戻る
 			if (i > 24) {
 				i = 1;
 			}
-			//今の時間が入れるかどうか
+			// 今の時間が入れるかどうか
 			if (h == i) {
 				return true;
 			}

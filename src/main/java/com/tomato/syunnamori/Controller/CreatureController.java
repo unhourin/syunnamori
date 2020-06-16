@@ -33,8 +33,8 @@ public class CreatureController {
 		// すべとのデータをCreatureDao.queryAllから取得
 		List<Creature> list = creatureDao.queryAll();
 
-		// listのサイズの確認
-		if (list.size() == 0)
+		// listの空かどうか
+		if (list.isEmpty())
 			// NULLであったら messageを戻す
 			return new AjaxResult(0, "NULL");
 
@@ -48,8 +48,8 @@ public class CreatureController {
 	public AjaxResult kongetsu() {
 		// 今月にとれるデータをCreatureDaoから取得
 		List<Creature> list = creatureDao.queryAll();
-		// listのサイズの確認
-		if (list.size() == 0)
+		// listの空かどうか
+		if (list.isEmpty())
 			// NULLのmessageを戻す
 			return new AjaxResult(0, "NULL");
 
@@ -74,8 +74,8 @@ public class CreatureController {
 	public AjaxResult riarutaimu() {
 		// 必要なデータをcreatureDaoから取得
 		List<Creature> list = creatureDao.queryAll();
-		// listのサイズの確認
-		if (list.size() == 0)
+		// listの空かどうか
+		if (list.isEmpty())
 			// 失敗したら、メッセージを戻す
 			return new AjaxResult(0, "NULL");
 
@@ -110,7 +110,7 @@ public class CreatureController {
 
 		@Override
 		public int compare(Creature c1, Creature c2) {
-			return (Integer.valueOf(c1.getcPrice()) - Integer.valueOf(c2.getcPrice()));
+			return (Integer.valueOf(c2.getcPrice()) - Integer.valueOf(c1.getcPrice()));
 		}
 	}
 }
