@@ -1,5 +1,6 @@
 package com.tomato.syunnamori.Controller;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -89,8 +90,8 @@ public class CreatureController {
 		List<Creature> nData = tmpList.get(1);
 
 		// c_codeが小さい順にソートする
-		Collections.sort(sData, new MyComparatorPrice());
-		Collections.sort(nData, new MyComparatorPrice());
+		Collections.sort(sData, new MyComparatorTimeGap());
+		Collections.sort(nData, new MyComparatorTimeGap());
 		return new AjaxResult(1, "SUCCESS", sData, nData);
 	}
 
@@ -111,6 +112,29 @@ public class CreatureController {
 		@Override
 		public int compare(Creature c1, Creature c2) {
 			return (Integer.valueOf(c2.getcPrice()) - Integer.valueOf(c1.getcPrice()));
+		}
+	}
+
+	static class MyComparatorTimeGap implements Comparator<Creature> {
+
+		@Override
+		public int compare(Creature c1, Creature c2) {
+
+			Calendar calendar = Calendar.getInstance();
+			int hour = calendar.get(Calendar.HOUR_OF_DAY);
+			int c1Tt = c1.getTimeZone().getTimeZone();
+			int c2Tt = c2.getTimeZone().getTimeZone();
+			int c1Compare = 0;
+			int c2Compare = 0;
+			c1Compare = c1Tt % 100 - hour;
+			if (c1Tt % 100 < c1Tt / 100) {
+				c1Compare = c1Tt % 100 + 24 - hour;
+			}
+			c2Compare = c2Tt % 100 - hour;
+			if (c2Tt % 100 < c2Tt / 100) {
+				c2Compare = c1Tt % 100 + 24 - hour;
+			}
+			return (c1Compare - c2Compare);
 		}
 	}
 }
