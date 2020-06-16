@@ -67,30 +67,26 @@ public class TimeCheck {
 	}
 
 	public Boolean isDuringThisMonth(int startMonth, int endMonth) {
-		System.out.print(startMonth);
-		System.out.print(endMonth);
 		// カレンダーから今月を取得する
 		Calendar calendar = Calendar.getInstance();
 		int m = calendar.get(Calendar.MONTH) + 1;
-		System.out.print(m);
 		// 初期値：開始月
-		// 終了条件：終了月に超えること
-		int i = startMonth;
-		while (true) {
+		for (int i = startMonth;; i++) {
+			// 十二月に超えたら一月に戻る
 			if (i > 12) {
 				i = 1;
 			}
-
+			// 今月がiである場合
+			// trueをリターン
 			if (m == i) {
 				return true;
 			}
-
+			// 終了条件：終了月まで
 			if (i == endMonth) {
 				break;
 			}
-			i++;
 		}
-		
+
 		return false;
 	}
 
@@ -103,15 +99,20 @@ public class TimeCheck {
 		Calendar calendar = Calendar.getInstance();
 		int h = calendar.get(Calendar.HOUR_OF_DAY);
 		// 初期値：開始時間
-		// 終了条件：終了時間に超えること
-		for (int i = startHour; i != endHour; i++) {
+
+		for (int i = startHour;; i++) {
 			// 二十四時に超えたら一時に戻る
 			if (i > 24) {
 				i = 1;
 			}
-			// 今の時間が入れるかどうか
+			// 今の時間がiである場合
+			// trueをリターン
 			if (h == i) {
 				return true;
+			}
+			// 終了条件：終了時間まで
+			if (i == endHour) {
+				break;
 			}
 		}
 		return false;
