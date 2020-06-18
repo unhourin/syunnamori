@@ -42,7 +42,8 @@ public class Creature {
 	}
 	
 	public String getfShName() {
-		return FishShadow.getfShName(fSh);
+		fShName = FishShadow.getfShName(fSh);
+		return fShName;
 	}
 	public void setfShName(String fShName) {
 		this.fShName = fShName;
