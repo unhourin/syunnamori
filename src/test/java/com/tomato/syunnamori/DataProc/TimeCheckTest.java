@@ -10,37 +10,25 @@ import org.junit.jupiter.api.Test;
  */
 class TimeCheckTest {
 
-//	TimeCheck timeCheck = new TimeCheck();
-//
-//	@Test
-//	void testTimeCheck() {
-//
-//	}
-//
-//	@Test
-//	void testIsDuringThisMonth() {
-//		// 戻り値を取得
-//		// 引数：１、開始月 ２、終了月
-//		// 今月：六月
-//		boolean test1 = timeCheck.isDuringThisMonth(1, 3);
-//		boolean test2 = timeCheck.isDuringThisMonth(1, 7);
-//		boolean test6 = timeCheck.isDuringThisMonth(1, 6);
-//		boolean test3 = timeCheck.isDuringThisMonth(6, 1);
-//		boolean test7 = timeCheck.isDuringThisMonth(5, 1);
-//		boolean test4 = timeCheck.isDuringThisMonth(4, 11);
-//		boolean test5 = timeCheck.isDuringThisMonth(11, 3);
-//
-//		// 期待値と検証する
-//		//引数：１、結果　２、期待値
-//		assertEquals(test1, false);
-//		assertEquals(test2, true);
-//		assertEquals(test3, true);
-//		assertEquals(test4, true);
-//		assertEquals(test5, false);
-//		assertEquals(test6, true);
-//		assertEquals(test7, true);
-//	}
-//
+	TimeCheck timeCheck = new TimeCheck();
+
+	@Test
+	void testTimeCheck() {
+
+	}
+
+	@Test
+	void testIsDuringThisMonth() {
+		// 戻り値を取得
+		// 引数：１、開始月 ２、終了月
+		// 今月：六月
+		boolean test1 = timeCheck.isDuringThisMonth(6, 5);
+
+		// 期待値と検証する
+		//引数：１、結果　２、期待値
+		assertEquals(test1, true);
+	}
+
 //	@Test
 //	void testIsDuringThisDay() {
 //		// 戻り値を取得
