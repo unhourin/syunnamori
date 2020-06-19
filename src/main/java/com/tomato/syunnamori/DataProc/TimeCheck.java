@@ -8,7 +8,8 @@ import com.tomato.syunnamori.Entity.Creature;
 
 /**
  * @author unhourin
- * @version 2020/06/099:52:00 クラス説明
+ * @version 2020/06/099:52:00 
+ * 時間チェックのコンポーネント
  */
 public class TimeCheck {
 	public List<List<Creature>> timeCheck(List<Creature> list, boolean isCheckHour) {
@@ -71,7 +72,7 @@ public class TimeCheck {
 		Calendar calendar = Calendar.getInstance();
 		int m = calendar.get(Calendar.MONTH) + 1;
 		// 初期値：開始月
-		for (int i = startMonth;; i++) {
+		for (int i = startMonth;i!=endMonth + 1; i++) {
 			// 十二月に超えたら一月に戻る
 			if (i > 12) {
 				i = 1;
@@ -82,9 +83,9 @@ public class TimeCheck {
 				return true;
 			}
 			// 終了条件：終了月まで
-			if (i == endMonth) {
-				break;
-			}
+//			if (i == endMonth) {
+//				break;
+//			}
 		}
 
 		return false;

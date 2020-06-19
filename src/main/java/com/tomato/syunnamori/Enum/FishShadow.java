@@ -36,16 +36,4 @@ public enum FishShadow {
 		return pCode;
 	}
 
-	public void setpCode(int pCode) {
-		this.pCode = pCode;
-	}
-
-	public String getPlaceStr() {
-		return placeStr;
-	}
-
-	public void setPlaceStr(String placeStr) {
-		this.placeStr = placeStr;
-	}
-
 }

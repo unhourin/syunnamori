@@ -30,11 +30,4 @@ public class TimeZone {
 		this.timeZone = timeZone;
 	}
 	
-	@Override
-	public String toString() {
-		return "TimeZone [fvb-vbgxziop@;-gnMonth=" + nMonth + ", sMonth=" + sMonth
-				+ ", timeZone=" + timeZone + "]";
-	}
-	
-	
 }

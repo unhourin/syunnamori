@@ -45,9 +45,6 @@ public class Creature {
 		fShName = FishShadow.getfShName(fSh);
 		return fShName;
 	}
-	public void setfShName(String fShName) {
-		this.fShName = fShName;
-	}
 	
 	public int getcPrice() {
 		return cPrice;
@@ -73,13 +70,5 @@ public class Creature {
 	public void setTimeZone(TimeZone timeZone) {
 		this.timeZone = timeZone;
 	}
-	
-	@Override
-	public String toString() {
-		return "Creature [cCode=" + cCode + ", cName=" + cName + ", fSh=" + fSh + ", cPrice=" + cPrice + ", pCode="
-				+ pCode + ", pName=" + pName + ", timeZone=" + timeZone + "]";
-	}
-	
-	
 	
 }
